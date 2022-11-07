@@ -1,0 +1,15 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+      - id: order-service
+        uri: http://192.168.153.2:9200
+        order: 1
+        predicates:
+          - Path=/order-server/**
+        filters:
+          - StripPrefix=1

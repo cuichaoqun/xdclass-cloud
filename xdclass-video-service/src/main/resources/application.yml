@@ -1,0 +1,24 @@
+server:
+  port: 9003
+spring:
+  application:
+    name: xdclass-video-service
+  cloud:
+    sentinel:
+      transport:
+        dashboard: 192.168.153.129:8180
+        port: 9997
+
+    nacos:
+      discovery:
+        server-addr: 8.134.151.180:8848
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://8.134.151.180:3306/cloud_video?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 123456
+# 控制台输出sql、下划线转驼峰
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true

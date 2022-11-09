@@ -28,6 +28,14 @@ public class VideoController {
         return byId;
     }
 
+    @RequestMapping("find_by_id")
+    public Video find_by_id(int videoId){
+        Video byId = videoService.findById(videoId);
+        Video video = new Video();
+        video.setTitle(byId.getTitle());
+        return video;
+    }
+
     @PostMapping("save")
     public int save(@RequestBody Video video){
         System.out.println(video.getTitle());

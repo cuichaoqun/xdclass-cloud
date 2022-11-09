@@ -6,7 +6,7 @@ spring:
   cloud:
     sentinel:
       transport:
-        dashboard: 192.168.153.130:8180
+        dashboard: 127.0.0.1:8180
         port: 9999
 
     nacos:

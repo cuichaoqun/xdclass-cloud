@@ -2,6 +2,7 @@ package net.xdclass.controller;
 
 
 import net.xdclass.Video;
+import net.xdclass.VideoOrder;
 import net.xdclass.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
@@ -47,6 +48,19 @@ public class OrderController {
         Object save = orderService.save(video);
 
         return "1234";
+    }
+
+    @RequestMapping("saveVideo")
+    public VideoOrder saveVideo(int videoId){
+        VideoOrder videoOrder = new VideoOrder();
+        videoOrder.setVideoId(videoId);
+        List<ServiceInstance> list = discoveryClient.getInstances("xdclass-video-service");
+        ServiceInstance serviceInstance = list.get(0);
+        Video video = restTemplate.getForObject("http://"+serviceInstance.getHost()+":"+serviceInstance.getPort()+
+                "/api/v1/video/find_by_id?videoId="+videoId,Video.class);
+        videoOrder.setVideoTitle(video.getTitle());
+        videoOrder.setVideoId(video.getId());
+        return videoOrder;
     }
 
     @RequestMapping("list")

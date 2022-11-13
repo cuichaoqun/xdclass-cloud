@@ -7,10 +7,7 @@ import net.xdclass.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
@@ -62,8 +59,8 @@ public class OrderController {
         videoOrder.setVideoId(video.getId());
         return videoOrder;
     }
-
-    @RequestMapping("list")
+//http://127.0.0.1:8080/api/v1/video_order/list
+    @GetMapping("list")
     public HashMap list(){
         try {
             TimeUnit.SECONDS.sleep(3);

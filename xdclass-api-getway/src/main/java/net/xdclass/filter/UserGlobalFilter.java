@@ -15,7 +15,7 @@ import reactor.core.publisher.Mono;
  * @Version 1.0
  **/
 
-//@Component
+@Component
 public class UserGlobalFilter implements GlobalFilter, Ordered {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {

@@ -70,6 +70,19 @@ public class OrderController {
         HashMap hashMap = new HashMap();
         hashMap.put("title","name1");
         hashMap.put("title1","name2");
+        System.out.println(hashMap);
         return hashMap;
+    }
+
+    @RequestMapping("query")
+    public Video query(){
+        VideoOrder videoOrder = new VideoOrder();
+        videoOrder.setVideoId(30);
+        List<ServiceInstance> list = discoveryClient.getInstances("xdclass-video-service");
+        ServiceInstance serviceInstance = list.get(0);
+        Video video = restTemplate.getForObject("http://"+serviceInstance.getHost()+":"+serviceInstance.getPort()+
+                "/api/v1/video/find_by_id?videoId="+30,Video.class);
+
+        return video;
     }
 }

@@ -31,9 +31,7 @@ public class VideoController {
     @RequestMapping("find_by_id")
     public Video find_by_id(int videoId){
         Video byId = videoService.findById(videoId);
-        Video video = new Video();
-        video.setTitle(byId.getTitle());
-        return video;
+        return byId;
     }
 
     @PostMapping("save")

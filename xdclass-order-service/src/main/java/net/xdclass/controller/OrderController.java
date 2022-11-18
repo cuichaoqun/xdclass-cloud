@@ -5,8 +5,11 @@ import net.xdclass.Video;
 import net.xdclass.VideoOrder;
 import net.xdclass.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -16,6 +19,7 @@ import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("api/v1/video_order")
+@RefreshScope
 public class OrderController {
 
     @Autowired
@@ -23,6 +27,9 @@ public class OrderController {
 
     @Autowired
     private DiscoveryClient discoveryClient;
+
+    @Value("${video.title}")
+    private String videoTitle;
 
     @Autowired
     private OrderService orderService;
@@ -54,7 +61,7 @@ public class OrderController {
         List<ServiceInstance> list = discoveryClient.getInstances("xdclass-video-service");
         ServiceInstance serviceInstance = list.get(0);
         Video video = restTemplate.getForObject("http://"+serviceInstance.getHost()+":"+serviceInstance.getPort()+
-                "/api/v1/video/find_by_id?videoId="+videoId,Video.class);
+                "/api/v1/video/find_by_id?videoId="+videoTitle,Video.class);
         videoOrder.setVideoTitle(video.getTitle());
         videoOrder.setVideoId(video.getId());
         return videoOrder;
@@ -62,11 +69,6 @@ public class OrderController {
 //http://127.0.0.1:8080/api/v1/video_order/list
     @GetMapping("list")
     public HashMap list(){
-        try {
-            TimeUnit.SECONDS.sleep(3);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         HashMap hashMap = new HashMap();
         hashMap.put("title","name1");
         hashMap.put("title1","name2");
@@ -81,7 +83,7 @@ public class OrderController {
         List<ServiceInstance> list = discoveryClient.getInstances("xdclass-video-service");
         ServiceInstance serviceInstance = list.get(0);
         Video video = restTemplate.getForObject("http://"+serviceInstance.getHost()+":"+serviceInstance.getPort()+
-                "/api/v1/video/find_by_id?videoId="+30,Video.class);
+                "/api/v1/video/find_by_id?videoId="+videoTitle,Video.class);
 
         return video;
     }

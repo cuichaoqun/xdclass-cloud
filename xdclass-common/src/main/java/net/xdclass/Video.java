@@ -15,4 +15,6 @@ public class Video {
     private Date createTime;
     private Double point;
     private String serveInfo;
+
+
 }

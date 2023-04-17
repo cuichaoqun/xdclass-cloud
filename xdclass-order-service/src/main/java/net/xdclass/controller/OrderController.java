@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -75,6 +76,7 @@ public class OrderController {
         System.out.println(hashMap);
         return hashMap;
     }
+
 
     @RequestMapping("query")
     public Video query(){

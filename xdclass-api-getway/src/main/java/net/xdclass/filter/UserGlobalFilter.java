@@ -31,7 +31,7 @@ public class UserGlobalFilter implements GlobalFilter, Ordered {
 
 
         //继续往下执行
-        return chain.filter(exchange);
+            return chain.filter(exchange);
     }
 
     //数字越小，优先级越高

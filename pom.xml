@@ -13,6 +13,7 @@
         <module>xdclass-user-service</module>
         <module>xdclass-order-service</module>
         <module>xdclass-api-getway</module>
+        <module>xdclass-design-patterns</module>
     </modules>
 
     <properties>

@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="xdclass-api-getway" />
+        <module name="xdclass-design-patterns" />
         <module name="xdclass-user-service" />
         <module name="xdclass-order-service" />
         <module name="xdclass-video-service" />

@@ -4,7 +4,7 @@
 #  application:
 #    name: api-gateway
 #  zipkin:
-#    base-url: http://8.134.151.180:9411/ #zipkin地址
+#    base-url: http://39.100.71.133:9411/ #zipkin地址
 #    discovery-client-enabled: false  #不用开启服务发现
 #    sleuth:
 #      sampler:
@@ -12,7 +12,7 @@
 #  cloud:
 #    nacos:
 #      discovery:
-#        server-addr: 8.134.151.180:8848
+#        server-addr: 39.100.71.133:8848
 #        locator:
 #          enabled: true  #开启网关拉取nacos的服务
 #

@@ -14,6 +14,7 @@
         <module>xdclass-order-service</module>
         <module>xdclass-api-getway</module>
         <module>xdclass-design-patterns</module>
+        <module>xdclass-mybatis-generator</module>
     </modules>
 
     <properties>
@@ -81,4 +82,25 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>server</id><!-- 服务器环境 -->
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <!--当前环境-->
+                <xdclass.profile.name>server</xdclass.profile.name>
+                <!--Nacos配置中心地址-->
+                <xdclass.nacos.ip>39.100.71.133</xdclass.nacos.ip>
+                <xdclass.nacos.port>8848</xdclass.nacos.port>
+                <xdclass.nacos.username>nacos</xdclass.nacos.username>
+                <xdclass.nacos.password>nacos</xdclass.nacos.password>
+                <!--Nacos配置中心命名空间,用于支持多环境.可自定义命名空间名称,默认为空-->
+                <xdclass.nacos.namespace>local</xdclass.nacos.namespace>
+            </properties>
+        </profile>
+    </profiles>
+
 </project>

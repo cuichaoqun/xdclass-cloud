@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.xdclass.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="net.xdclass.entity.UserModel">
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="birthday" property="birthday"/>
+        <result column="address" property="address"/>
+    </resultMap>
+
+    <sql id="baseColumns">
+        t.id
+        , t.name
+        , t.birthday
+        , t.address
+    </sql>
+
+    <select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        SELECT
+        <include refid="baseColumns"/>
+        FROM user t
+        WHERE id = #{id}
+    </select>
+
+    <insert id="insertNotIgnoreEmpty" parameterType="net.xdclass.entity.UserModel"
+            keyProperty="id" keyColumn="id" useGeneratedKeys="true"
+    >
+        INSERT INTO user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            name,
+            birthday,
+            address,
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            #{id},
+            #{name},
+            #{birthday},
+            #{address},
+        </trim>
+    </insert>
+
+    <insert id="insertIgnoreEmpty" parameterType="net.xdclass.entity.UserModel"
+            keyProperty="id" keyColumn="id" useGeneratedKeys="true">
+        INSERT INTO user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null and name.trim() != ''">
+                name,
+            </if>
+            <if test="birthday != null">
+                birthday,
+            </if>
+            <if test="address != null and address.trim() != ''">
+                address,
+            </if>
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="name != null and name.trim() != ''">
+                #{name},
+            </if>
+            <if test="birthday != null">
+                #{birthday},
+            </if>
+            <if test="address != null and address.trim() != ''">
+                #{address},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateNotIgnoreEmpty" parameterType="net.xdclass.entity.UserModel">
+        UPDATE user
+        <set>
+            name=#{name},
+            birthday=#{birthday},
+            address=#{address},
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <update id="updateIgnoreEmpty" parameterType="net.xdclass.entity.UserModel">
+        UPDATE user
+        <set>
+            <if test="name != null and name.trim() != ''">
+                name = #{name},
+            </if>
+            <if test="birthday != null">
+                birthday = #{birthday},
+            </if>
+            <if test="address != null and address.trim() != ''">
+                address = #{address},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+</mapper>

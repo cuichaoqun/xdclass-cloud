@@ -9,11 +9,20 @@
         <outputRelativeToContentRoot value="true" />
         <module name="xdclass-api-getway" />
         <module name="xdclass-design-patterns" />
+        <module name="xdclass-mybatis-generator" />
         <module name="xdclass-user-service" />
         <module name="xdclass-order-service" />
         <module name="xdclass-video-service" />
         <module name="xdclass-common" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="mybatis-generator" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="xdclass-mybatis-generator" options="" />
+    </option>
   </component>
 </project>

@@ -35,7 +35,7 @@ public class VideoController {
     }
 
     @PostMapping("save")
-            public int save(@RequestBody Video video){
+    public int save(@RequestBody Video video){
         System.out.println(video.getTitle());
         return 123;
     }

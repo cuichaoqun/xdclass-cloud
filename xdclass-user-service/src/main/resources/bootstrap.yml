@@ -1,8 +1,8 @@
 server:
-  port: 9102
+  port: 9101
 spring:
   application:
-    name: xdclassOrderService
+    name: xdclassUserService
   profiles:
     active: server
 
@@ -17,7 +17,7 @@ spring:
         server-addr: 39.100.71.133:8848
         namespace: local
       config:
-        prefix: xdclassOrderService
+        prefix: xdclassUserService
         server-addr: ${spring.cloud.nacos.discovery.server-addr}
         namespace: ${spring.cloud.nacos.discovery.namespace}
         file-extension: yaml

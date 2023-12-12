@@ -16,10 +16,14 @@ spring:
       discovery:
         server-addr: 39.100.71.133:8848
         namespace: local
+        username: nacos
+        password: nacos
       config:
         prefix: xdclassUserService
         server-addr: ${spring.cloud.nacos.discovery.server-addr}
         namespace: ${spring.cloud.nacos.discovery.namespace}
+        username: ${spring.cloud.nacos.discovery.username}
+        password: ${spring.cloud.nacos.discovery.password}
         file-extension: yaml
           # 共享配置
         shared-configs:
